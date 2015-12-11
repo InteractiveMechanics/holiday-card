@@ -1,0 +1,502 @@
+<html>
+<head>
+	<title>Interactive Mechanics Holiday e-Card</title>
+
+<style type="text/css">
+body {
+	margin: 0;
+	padding: 0;
+}
+.wrapper {
+	padding: 10px 20px;
+}
+
+.menu-options {
+	position: absolute;
+    top: 10px;
+    right: 20px;
+}
+
+.menu-options ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+.menu-options ul li {
+	list-style: none;
+	cursor: pointer;
+	margin: 0 0 7px;
+}
+
+.holiday-message {
+	width: 45%;
+	margin: 50px auto;
+}
+
+.holiday-message h1 {
+	text-align: center;
+	font-size: 2.5em;
+	margin:15px 0;
+}
+
+.holiday-message p {
+	line-height: 25px;
+	margin-bottom:40px;
+	font-family:helvetica;
+	font-size: .85em;
+}
+
+.holiday-message p a {
+	color:#002147;
+	font-weight: 600;
+}
+
+.holiday-message p a:hover {
+	text-decoration: none;
+}
+
+.holiday-image {
+	text-align: center;
+}
+
+.holiday-image img {
+	width: 60%;
+}
+
+.swowglobe-bg {
+
+}
+
+.swowglobe-bg .globe-area {
+	text-align: center;
+}
+
+
+
+.swowglobe-bg img.globe {
+	z-index: -1000;
+	width:600px;
+	margin: 0 auto;
+	left:0;
+	right:0;
+}
+
+.globe-area-foreground img.globe-foreground {
+	width: 600px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 10px;
+}
+
+.globe-area-background img.shadow-foreground {
+	width: 950px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 525px;
+    z-index: -10000000;
+}
+
+.character-row {
+	position: absolute;
+    top: 200px;
+    left: 385px;
+}
+
+.character {
+	float: left;
+	margin-right: -42px;
+}
+
+.character img {
+}
+
+.character .head {
+
+}
+
+.character .head .top {
+	margin-top: -10px;
+}
+
+.character .head .bottom {
+	margin-top: -12px;
+}
+
+.character .body {
+	margin-top:-10px;
+}
+
+.character.mike {
+	
+}
+
+.character.jeff {
+	margin-top: 40px;
+}
+
+.character.amelia {
+
+}
+
+.character.stacey {
+	margin-top: 40px;
+}
+
+.character.christina {
+
+}
+
+.character-rocking {
+  animation: rock-character 1.25s linear 0s infinite;
+  transform-origin: 25%;
+}
+
+.head-rocking {
+  animation: animationFrames .8s linear 0s;
+  transform-origin: 25%;
+}
+
+.modal {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: rgba(255,255,255,.75);
+	z-index: 99999;
+	opacity:0;
+	-webkit-transition: opacity 400ms ease-in;
+	-moz-transition: opacity 400ms ease-in;
+	transition: opacity 400ms ease-in;
+	pointer-events: none;
+}
+
+.modal .keyboard-modal {
+	width: 65%;
+	margin: 150px auto 0;
+}
+
+.modal .keyboard-modal img.keyboard {
+	width: 100%;
+}
+
+.modal:target {
+	opacity:1;
+	pointer-events: auto;
+}
+
+.modal .close {
+	float: right;
+}
+
+@-webkit-keyframes rock-character {
+  0% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  14% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  }
+  28% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  42% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(10deg) ;
+  }
+  56% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  70% {
+  	-webkit-transform:  translate(0px,-12px)  rotate(0deg) ;
+  }
+  84% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  95% {
+  	-webkit-transform:  translate(0px,5px)  rotate(0deg) ;
+  }
+  100% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+
+}
+
+@-webkit-keyframes move-head-up {
+  50% { -webkit-transform: translate(10px 0) }
+
+}
+
+@-webkit-keyframes animationFrames {
+  0% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  14% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  }
+  28% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  42% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(10deg) ;
+  }
+  56% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  70% {
+  	-webkit-transform:  translate(0px,-12px)  rotate(0deg) ;
+  }
+  84% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  95% {
+  	-webkit-transform:  translate(0px,5px)  rotate(0deg) ;
+  }
+  100% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+}
+</style>
+</head>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<body>
+	<audio class="audio-area"></audio>
+	<div class="wrapper">
+		<div class="menu-options">
+			<ul>
+				<li>
+					<img src="images/button-play.svg" alt="Play Button" />
+				</li>
+				<li>
+				<img src="images/button-record.svg" alt="Record Button" />
+				</li>
+				<li>
+					<img src="images/button-twitter.svg" alt="Twitter Button" />
+				</li>
+				<li>
+					<img src="images/button-info.svg" alt="Info Button" />
+				</li>
+			</ul>
+		</div>
+
+		<div class="swowglobe-bg">
+			<div class="globe-area">
+				<img class='globe' src='images/snowglobe-background@2x.png'  />
+			</div>
+
+			<div class="globe-area-foreground">
+				<img class='globe-foreground' src='images/snowglobe-foreground@2x.png'  />
+			</div>
+
+			<div class="globe-area-background">
+				<img class='shadow-foreground' src='images/background@2x.png'  />
+			</div>
+
+
+			<div class="character-row">
+
+				<div class="character mike">
+
+					<div class="head">
+						<div class="top">
+							<img src="images/head-mike@2x.png" />
+						</div>
+
+						<div class="bottom">
+							<img src="images/mouth-mike@2x.png" />
+						</div>
+					</div>
+
+					<div class="body">
+						<img src="images/body-mike@2x.png" alt="Jeff's Body" />
+					</div>
+
+				</div>
+
+				<div class="character jeff">
+
+					<div class="head">
+						<div class="top">
+							<img src="images/head-jeff@2x.png" />
+						</div>
+
+						<div class="bottom">
+							<img src="images/mouth-jeff@2x.png" />
+						</div>
+					</div>
+
+					<div class="body">
+						<img src="images/body-jeff@2x.png" alt="Jeff's Body" />
+					</div>
+					
+				</div>
+
+				<div class="character amelia">
+
+					<div class="head">
+						<div class="top">
+							<img src="images/head-amelia@2x.png" />
+						</div>
+
+						<div class="bottom">
+							<img src="images/mouth-amelia@2x.png" />
+						</div>
+					</div>
+
+					<div class="body">
+						<img src="images/body-amelia@2x.png" alt="Jeff's Body" />
+					</div>
+					
+				</div>
+
+				<div class="character stacey">
+
+					<div class="head">
+						<div class="top">
+							<img src="images/head-stacey@2x.png" />
+						</div>
+
+						<div class="bottom">
+							<img src="images/mouth-stacey@2x.png" />
+						</div>
+					</div>
+
+					<div class="body">
+						<img src="images/body-stacey@2x.png" alt="Jeff's Body" />
+					</div>
+					
+				</div>
+
+				<div class="character christina">
+
+					<div class="head">
+						<div class="top">
+							<img src="images/head-christina@2x.png" />
+						</div>
+
+						<div class="bottom">
+							<img src="images/mouth-christina@2x.png" />
+						</div>
+					</div>
+
+					<div class="body">
+						<img src="images/body-christina@2x.png" alt="Jeff's Body" />
+					</div>
+					
+				</div>
+
+				<br style="clear:left;" />
+
+			</div>
+
+		</div>
+
+		<div class="holiday-message">
+			<h1>
+				Happy Holiday's
+			</h1>
+			
+			<p>
+				Everyone's favorite part of the holiday season is the music. <a  href="#open-modal">Use your keyboard</a> to play your favorite holiday carols or just make an awesome festive tune for your colleagues, friends, or family. Spread a little bit of holiday cheer by <a href="javascript: void();">sharing this card</a> with the world, or <a href="javascript: void();">record your favorite beat</a> and send it to the ones you love.
+			</p>
+
+			<div class="holiday-image">
+				<a href="http://interactivemechanics.com/" target="_blank">
+					<img src="images/logo@2x.png" alt="Happy Holiday's from Interactive Mechanics" />
+				</a>
+			</div>
+		</div>
+
+
+
+		<div id="open-modal" class="modal">
+			<div>
+				<div class="keyboard-modal">
+					<a href="#close" title="Close" class="close">
+						<img src="images/button-close.svg" />
+					</a>
+					<img src="images/keyboard@2x.png" class="keyboard" />
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+
+		var isRotatingBody = false;
+		var isRotatingHead = false;
+		var audioTag = null;
+	
+		$(document).keypress(function(e) {
+
+		    if(e.which == 81  ||  e.which == 113) {
+		       if(isRotatingBody) {
+		    		$('.character').removeClass('character-rocking');
+		    		isRotatingBody = false;
+		       } else {
+		       		$('.character').addClass('character-rocking')
+		       		isRotatingBody = true;
+		       }
+		    }
+
+		    if(e.which == 80  ||  e.which == 112) {
+		       
+		    }
+
+		    audioTag = getAudioTag();
+		    if(e.which == 90) {
+		    	audioTag.src = 'audio/mike.mp3';
+		    	audioTag.load();
+
+		    	audioTag.play();
+
+		    	rotateHead();
+		    } else if(e.which == 88) {
+		    	audioTag.src = 'audio/jeff.mp3';
+		    	audioTag.load();
+
+		    	audioTag.play();
+		    	rotateHead();
+		    } else if(e.which == 67) {
+		    	audioTag.src = 'audio/amelia.mp3';
+		    	audioTag.load();
+
+		    	audioTag.play();
+		    	rotateHead();
+		    } else if(e.which == 86) {
+		    	audioTag.src = 'audio/stacey.mp3';
+		    	audioTag.load();
+
+		    	audioTag.play();
+		    	rotateHead();
+		    } else if(e.which == 66) {
+		    	audioTag.src = 'audio/christina.mp3';
+		    	audioTag.load();
+
+		    	audioTag.play();
+		    	rotateHead();
+		    }
+
+		});
+
+		function getAudioTag() {
+			var audioTag = $('audio');
+			return audioTag[0];
+		}
+
+		function rotateHead() {
+			if(isRotatingHead) {
+	    		$('.character.mike .head .top').removeClass('head-rocking');
+	    		isRotatingHead = false;
+	       } else {
+	       		$('.character.mike .head .top').addClass('head-rocking')
+	       		isRotatingHead = true;
+	       }
+		}
+	</script>
+
+</body>
+</html>
