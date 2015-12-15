@@ -108,7 +108,7 @@ body {
 
 .character {
 	float: left;
-	margin-right: -42px;
+	margin-right: -47px;
 }
 
 .character img {
@@ -424,79 +424,7 @@ body {
 		</div>
 	</div>
 
-	<script type="text/javascript">
-
-		var isRotatingBody = false;
-		var isRotatingHead = false;
-		var audioTag = null;
-	
-		$(document).keypress(function(e) {
-
-		    if(e.which == 81  ||  e.which == 113) {
-		       if(isRotatingBody) {
-		    		$('.character').removeClass('character-rocking');
-		    		isRotatingBody = false;
-		       } else {
-		       		$('.character').addClass('character-rocking')
-		       		isRotatingBody = true;
-		       }
-		    }
-
-		    if(e.which == 80  ||  e.which == 112) {
-		       
-		    }
-
-		    audioTag = getAudioTag();
-		    if(e.which == 90) {
-		    	audioTag.src = 'audio/mike.mp3';
-		    	audioTag.load();
-
-		    	audioTag.play();
-
-		    	rotateHead();
-		    } else if(e.which == 88) {
-		    	audioTag.src = 'audio/jeff.mp3';
-		    	audioTag.load();
-
-		    	audioTag.play();
-		    	rotateHead();
-		    } else if(e.which == 67) {
-		    	audioTag.src = 'audio/amelia.mp3';
-		    	audioTag.load();
-
-		    	audioTag.play();
-		    	rotateHead();
-		    } else if(e.which == 86) {
-		    	audioTag.src = 'audio/stacey.mp3';
-		    	audioTag.load();
-
-		    	audioTag.play();
-		    	rotateHead();
-		    } else if(e.which == 66) {
-		    	audioTag.src = 'audio/christina.mp3';
-		    	audioTag.load();
-
-		    	audioTag.play();
-		    	rotateHead();
-		    }
-
-		});
-
-		function getAudioTag() {
-			var audioTag = $('audio');
-			return audioTag[0];
-		}
-
-		function rotateHead() {
-			if(isRotatingHead) {
-	    		$('.character.mike .head .top').removeClass('head-rocking');
-	    		isRotatingHead = false;
-	       } else {
-	       		$('.character.mike .head .top').addClass('head-rocking')
-	       		isRotatingHead = true;
-	       }
-		}
-	</script>
+	<script type="text/javascript" src="./app.js"></script>
 
 </body>
 </html>
