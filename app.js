@@ -1,10 +1,15 @@
-var keysArray = ["b", "c", "v", "q", "m", "n", "b"];
+var keysArray = [];
 var currentKeyIndex = 0;
 var isPlaying = false;
 var isRotatingBody = false;
 
-
 window.onload = function(e) {
+	var keys = getParameterByName('keys');
+	
+	if(keys) {
+		keysArray = keys.split(',');
+	}
+
 	if(keysArray) {
 		isPlaying = true;
 		playKeysArray();
@@ -70,6 +75,13 @@ function moveBodies() {
    		$('.character').addClass('character-rocking')
    		isRotatingBody = true;
    }
+}
+
+function getParameterByName(name) {
+    name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+    var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+        results = regex.exec(location.search);
+    return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
 function performAction(character) {
