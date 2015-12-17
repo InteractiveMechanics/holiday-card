@@ -2,6 +2,7 @@
 <head>
 	<title>Interactive Mechanics Holiday e-Card</title>
 
+
 <style type="text/css">
 body {
 	margin: 0;
@@ -144,22 +145,26 @@ body {
     z-index: -10000000;
 }
 
-.character-row {
-	position: absolute;
-    top: 200px;
-    left: 385px;
+.character {
+	float:left;
+	margin-left: -40px;
 }
 
-.character {
-	float: left;
-	margin-right: -47px;
+.character-row {
+	margin: 0 auto;
+    left: 50px;
+    right: 0;
+    position: absolute;
+    width: 505px;
+    top: 200px;
 }
 
 .character img {
 }
 
 .character .head {
-
+	top: 15px;
+	position: relative;
 }
 
 .character .head .top {
@@ -240,6 +245,8 @@ body {
 
 .modal .close {
 	float: right;
+	margin-right: -35px;
+	margin-top: 7px;
 }
 
 @-webkit-keyframes rock-character {
