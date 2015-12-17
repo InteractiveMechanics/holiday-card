@@ -2,7 +2,7 @@ var keysArray = [];
 var currentKeyIndex = 0;
 var isPlaying = false;
 var isRotatingBody = false;
-
+var base_url = 'http://staging.interactivemechanics.com/holiday-card/';
 window.onload = function(e) {
 	var keys = getParameterByName('keys');
 	
@@ -10,9 +10,11 @@ window.onload = function(e) {
 		keysArray = keys.split(',');
 	}
 
-	if(keysArray) {
+	if(keysArray.length > 0) {
 		isPlaying = true;
 		playKeysArray();
+		$('.play-icon').show();
+		$('li.play-icon').addClass('active');
 	}
 }
 
@@ -23,15 +25,15 @@ var playKeysArray = function() {
 		performAction(character);
 		currentKeyIndex += 1;
 
-		setTimeout(playKeysArray, 800);
+		setTimeout(playKeysArray, 1100);
 	}
 
 	if (currentKeyIndex == keysArray.length) {
-		keysArray = [];
+		//keysArray = [];
 		isPlaying = false;
 
 		if(isRotatingBody) {
-			moveBodies();
+			//moveBodies();
 		}
 	}
 }
@@ -61,9 +63,9 @@ function getAudioTag() {
 	return audioTag[0];
 }
 
-function rotateHead(person) {
-	$('.character.'+ person +' .head .top').addClass("head-rocking").delay(1000).queue(function(){
-    	$(this).removeClass("head-rocking").dequeue();
+function rotateHead(person, class_name) {
+	$('.character.'+ person +' .head .top').addClass(class_name).delay(1000).queue(function(){
+    	$(this).removeClass(class_name).dequeue();
 	});
 }
 
@@ -84,9 +86,56 @@ function getParameterByName(name) {
     return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
 }
 
+function playHolidayCard() {
+	
+	if(keysArray.length > 0) {
+		isPlaying = true;
+		playKeysArray();
+	}
+}
+
+function startRecording() {
+	isPlaying = false;
+}
+
+function sendToTwitter() {
+	var queryString =  keysArray.join();
+	var longURL = base_url;
+	
+	if(queryString !== '') {
+		longURL += '?keys=' + queryString
+	}
+	
+	$.getJSON(
+        "http://api.bitly.com/v3/shorten?callback=?", 
+        { 
+            "format": "json",
+            "apiKey": "R_690091f760ff43dc9e9e0a6f707ab05a",
+            "login": "jminteractivemechanics",
+            "longUrl": longURL
+        },
+        function(response)
+        {
+            openTwitterLink(response.data.url);
+        }
+    );
+}
+
+function openTwitterLink(shorten_url) {
+	var url = "https://twitter.com/home?status=Happy Holiday's from @InteractiveMech! Create a personalized holiday jingle with our interactive e-Card " + shorten_url;
+	window.open(url,'_blank');
+}
+
+function scrollToMessage() {
+    $('html, body').animate({
+        scrollTop: $("#message").offset().top
+    }, 850);
+}
+
 function performAction(character) {
 	audioTag = getAudioTag();
 	var validCharacter = true;
+
 
 	switch (character) {
     	case 'a':
@@ -96,7 +145,7 @@ function performAction(character) {
     		audioTag.src = 'audio/church_bell_B.mp3';
     		break;
     	case 'd':
-    		audioTag.src = 'audio/church_bell_C.mp3';
+    		audioTag.src = 'audio/church_bells_high_C.mp3';
     		break;
     	case 'f':
     		audioTag.src = 'audio/church_bell_D.mp3';
@@ -112,34 +161,35 @@ function performAction(character) {
     		break;
 	    case 'c':
 	    	audioTag.src = 'audio/Vocal-1.mp3';
-	    	rotateHead('mike');
+	    	rotateHead('mike', 'head-rocking');
     		break;
 	    case 'v':
 	    	audioTag.src = 'audio/Vocal-2.mp3';
-	    	rotateHead('jeff');
+	    	rotateHead('jeff', 'head-rocking');
     		break;
 	    case 'b':
 	    	audioTag.src = 'audio/Vocal-3.mp3';
-	    	rotateHead('amelia');
+	    	rotateHead('amelia', 'head-rocking');
     		break;
 	    case 'n':
 	    	audioTag.src = 'audio/Vocal-4.mp3';
-	    	rotateHead('stacey');
+	    	rotateHead('stacey', 'head-rocking');
     		break;
 	    case 'm':
 	        audioTag.src = 'audio/Vocal-5.mp3';
-	        rotateHead('christina');
+	        rotateHead('christina', 'head-rocking');
     		break;
     	case 'q':
+    		audioTag.src = 'audio/sleighbell.mp3';
 	        moveBodies();
     		break;
     	case ' ':
     		audioTag.src = 'audio/Vocal-6.mp3';
-    		rotateHead('mike');
-    		rotateHead('jeff');
-    		rotateHead('amelia');
-    		rotateHead('stacey');
-	        rotateHead('christina');
+    		rotateHead('mike', 'drastic-rocking');
+    		rotateHead('jeff', 'drastic-rocking');
+    		rotateHead('amelia', 'drastic-rocking');
+    		rotateHead('stacey', 'drastic-rocking');
+	        rotateHead('christina', 'drastic-rocking');
     		break;
     	default:
     		validCharacter = false;
