@@ -1,8 +1,11 @@
 var keysArray = [];
 var currentKeyIndex = 0;
 var isPlaying = false;
+var hasStartedRecording = false;
+
 var isRotatingBody = false;
 var base_url = 'http://staging.interactivemechanics.com/holiday-card/';
+
 window.onload = function(e) {
 	var keys = getParameterByName('keys');
 	
@@ -14,7 +17,7 @@ window.onload = function(e) {
 		isPlaying = true;
 		playKeysArray();
 		$('.play-icon').show();
-		$('li.play-icon').addClass('active');
+		//$('li.play-icon').addClass('active');
 	}
 }
 
@@ -31,7 +34,7 @@ var playKeysArray = function() {
 	if (currentKeyIndex == keysArray.length) {
 		//keysArray = [];
 		isPlaying = false;
-
+		
 		if(isRotatingBody) {
 			//moveBodies();
 		}
@@ -44,12 +47,12 @@ window.onkeydown = function(e) {
 
 window.onkeyup = function(e) {
 
-	if(!isPlaying) {
-		var key = e.keyCode ? e.keyCode : e.which;
-	   	var character = getCharacter(key);
+	var key = e.keyCode ? e.keyCode : e.which;
+	var character = getCharacter(key);   
+	performAction(character);
 	   	
-	   	keysArray.push(character);
-	   	performAction(character);
+	if(hasStartedRecording) {
+		keysArray.push(character);
 	}
 }
 
@@ -66,6 +69,12 @@ function getAudioTag() {
 function rotateHead(person, class_name) {
 	$('.character.'+ person +' .head .top').addClass(class_name).delay(1000).queue(function(){
     	$(this).removeClass(class_name).dequeue();
+	});
+}
+
+function lightBuilding(class_name) {
+	$(class_name).css('display', 'block').delay(200).queue(function(){
+    	$(this).css('display', 'none').dequeue();
 	});
 }
 
@@ -90,15 +99,27 @@ function playHolidayCard() {
 	
 	if(keysArray.length > 0) {
 		isPlaying = true;
+		currentKeyIndex = 0;
 		playKeysArray();
 	}
 }
 
 function startRecording() {
-	isPlaying = false;
+	hasStartedRecording = !hasStartedRecording;
+	
+	if(hasStartedRecording) {
+		$('li.record-icon').addClass('active');
+		$('li.record-icon span').text('Stop recording');
+	} else {
+		$('li.record-icon').removeClass('active');
+		$('li.record-icon span').text('Record a song');
+	}
+	
+	$('.play-icon').show();
 }
 
 function sendToTwitter() {
+	hasStartedRecording = false;
 	var queryString =  keysArray.join();
 	var longURL = base_url;
 	
@@ -127,9 +148,11 @@ function openTwitterLink(shorten_url) {
 }
 
 function scrollToMessage() {
-    $('html, body').animate({
+    /*$('html, body').animate({
         scrollTop: $("#message").offset().top
-    }, 850);
+    }, 850);*/
+    
+    $('#modal-link').click();
 }
 
 function performAction(character) {
@@ -140,24 +163,31 @@ function performAction(character) {
 	switch (character) {
     	case 'a':
     		audioTag.src = 'audio/church_bell_A.mp3';
+    		lightBuilding('.light-1');
     		break;
     	case 's':
     		audioTag.src = 'audio/church_bell_B.mp3';
+    		lightBuilding('.light-2');
     		break;
     	case 'd':
     		audioTag.src = 'audio/church_bells_high_C.mp3';
+    		lightBuilding('.light-3');
     		break;
     	case 'f':
     		audioTag.src = 'audio/church_bell_D.mp3';
+    		lightBuilding('.light-4');
     		break;
     	case 'j':
     		audioTag.src = 'audio/church_bell_E.mp3';
+    		lightBuilding('.light-5');
     		break;
     	case 'k':
     		audioTag.src = 'audio/church_bell_F.mp3';
+    		lightBuilding('.light-6');
     		break;
     	case 'l':
         	audioTag.src = 'audio/church_bell_G.mp3';
+        	lightBuilding('.light-7');
     		break;
 	    case 'c':
 	    	audioTag.src = 'audio/Vocal-1.mp3';

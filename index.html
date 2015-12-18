@@ -1,8 +1,9 @@
 <html>
 <head>
 	<title>Interactive Mechanics Holiday e-Card</title>
-
-
+	<link rel="shortcut icon" sizes="32x32 64x64" href="images/favicon-64x64.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="images/favicon-64x64.png" />
+    
 <style type="text/css">
 body {
 	margin: 0;
@@ -28,8 +29,20 @@ body {
 	list-style: none;
 	cursor: pointer;
 	margin: 0 0 7px;
+	line-height: 36px;
+	font-size: 1.2em;
+	text-align: center;
 	width: 36px;
 	height: 36px;
+}
+
+.menu-options ul li span {
+	position: absolute;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #555;
+    font-family: 'museo-sans';
 }
 
 .menu-options ul li.play-icon {
@@ -46,6 +59,10 @@ body {
 
 .menu-options ul li.record-icon {
 	background: url('images/button-record.svg');
+}
+
+.menu-options ul li.record-icon.active {
+	background: url('images/button-record-active.svg');
 }
 
 .menu-options ul li.record-icon:hover {
@@ -100,12 +117,8 @@ body {
 	text-decoration: none;
 }
 
-.holiday-image {
-	text-align: center;
-}
-
 .holiday-image img {
-	width: 60%;
+	width: 100%;
 }
 
 .swowglobe-bg {
@@ -117,17 +130,16 @@ body {
 }
 
 
-
 .swowglobe-bg img.globe {
 	z-index: -1000;
-	width:600px;
+	width:400px;
 	margin: 0 auto;
 	left:0;
 	right:0;
 }
 
 .globe-area-foreground img.globe-foreground {
-	width: 600px;
+	width: 400px;
     margin: 0 auto;
     left: 0;
     right: 0;
@@ -136,35 +148,35 @@ body {
 }
 
 .globe-area-background img.shadow-foreground {
-	width: 950px;
+	width: 650px;
     margin: 0 auto;
     left: 0;
     right: 0;
     position: absolute;
-    top: 525px;
+    top: 375px;
     z-index: -10000000;
 }
 
 .character {
-	float:left;
-	margin-left: -40px;
+	float: left;
+    margin-left: -80px;
 }
 
 .character-row {
 	margin: 0 auto;
-    left: 50px;
+    left: 152px;
     right: 0;
     position: absolute;
-    width: 505px;
-    top: 200px;
+    width: 305px;
+    top: 194px;
 }
 
 .character img {
+	width: 50%;
 }
 
 .character .head {
-	top: 15px;
-	position: relative;
+    position: relative;
 }
 
 .character .head .top {
@@ -172,7 +184,7 @@ body {
 }
 
 .character .head .bottom {
-	margin-top: -12px;
+	margin-top: -6px;
 }
 
 .character .body {
@@ -202,14 +214,23 @@ body {
 .character-rocking {
   animation: rock-character 1.25s linear 0s infinite;
   transform-origin: 25%;
+  
+  -moz-animation: rock-character 1.25s linear 0s infinite;
+  -moz-transform-origin: 25%;
 }
 
 .head-rocking {
+  -moz-animation: animationFrames .7s linear 0s;
+  -moz-transform-origin: 25%;
+  
   animation: animationFrames .7s linear 0s;
   transform-origin: 25%;
 }
 
 .drastic-rocking {
+  -moz-animation: drasticFrames .7s linear 0s;
+  -moz-transform-origin: 25%;
+  
   animation: drasticFrames .7s linear 0s;
   transform-origin: 25%;
 }
@@ -249,99 +270,323 @@ body {
 	margin-top: 7px;
 }
 
+.holiday-image {
+	margin: 0 auto;
+    left: 510px;
+    right: 0;
+    position: absolute;
+    width: 305px;
+    top: 264px;
+    z-index: -1;
+}
+
+.light img {
+	width: 400px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 10px;
+}
+
+.light-1,
+.light-2,
+.light-3,
+.light-4,
+.light-5,
+.light-6,
+.light-7 {
+	display: none;
+}
+
 @-webkit-keyframes rock-character {
   0% {
     -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
   }
   14% {
   	-webkit-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	transform:  translate(0px,-6px)  rotate(-10deg) ;
   }
   28% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   42% {
   	-webkit-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	transform:  translate(0px,-6px)  rotate(10deg) ;
   }
   56% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   70% {
   	-webkit-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	transform:  translate(0px,-12px)  rotate(0deg) ;
   }
   84% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   95% {
   	-webkit-transform:  translate(0px,5px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,5px)  rotate(0deg) ;
+  	transform:  translate(0px,5px)  rotate(0deg) ;
   }
   100% {
     -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
   }
 
 }
 
-@-webkit-keyframes move-head-up {
-  50% { -webkit-transform: translate(10px 0) }
+
+@-moz-keyframes rock-character {
+  0% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  14% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	transform:  translate(0px,-6px)  rotate(-10deg) ;
+  }
+  28% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  42% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	transform:  translate(0px,-6px)  rotate(10deg) ;
+  }
+  56% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  70% {
+  	-webkit-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	transform:  translate(0px,-12px)  rotate(0deg) ;
+  }
+  84% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  95% {
+  	-webkit-transform:  translate(0px,5px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,5px)  rotate(0deg) ;
+  	transform:  translate(0px,5px)  rotate(0deg) ;
+  }
+  100% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
+  }
 
 }
 
 @-webkit-keyframes animationFrames {
   0% {
     -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
   }
   14% {
   	-webkit-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	transform:  translate(0px,-6px)  rotate(-10deg) ;
   }
   28% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   42% {
   	-webkit-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	transform:  translate(0px,-6px)  rotate(10deg) ;
   }
   56% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   70% {
   	-webkit-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	transform:  translate(0px,-12px)  rotate(0deg) ;
   }
   84% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   95% {
   	-webkit-transform:  translate(0px,5px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,5px)  rotate(0deg) ;
+  	transform:  translate(0px,5px)  rotate(0deg) ;
   }
   100% {
     -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+}
+
+@-moz-keyframes animationFrames {
+  0% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  14% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(-10deg) ;
+  	transform:  translate(0px,-6px)  rotate(-10deg) ;
+  }
+  28% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  42% {
+  	-webkit-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	-moz-transform:  translate(0px,-6px)  rotate(10deg) ;
+  	transform:  translate(0px,-6px)  rotate(10deg) ;
+  }
+  56% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  70% {
+  	-webkit-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(0deg) ;
+  	transform:  translate(0px,-12px)  rotate(0deg) ;
+  }
+  84% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  95% {
+  	-webkit-transform:  translate(0px,5px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,5px)  rotate(0deg) ;
+  	transform:  translate(0px,5px)  rotate(0deg) ;
+  }
+  100% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
   }
 }
 
 @-webkit-keyframes drasticFrames {
   0% {
     -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
   }
   14% {
   	-webkit-transform:  translate(0px,-12px)  rotate(-20deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(-20deg) ;
+  	transform:  translate(0px,-12px)  rotate(-20deg) ;
   }
   28% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   42% {
   	-webkit-transform:  translate(0px,-12px)  rotate(20deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(20deg) ;
+  	transform:  translate(0px,-12px)  rotate(20deg) ;
   }
   56% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   70% {
   	-webkit-transform:  translate(0px,-24px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,-24px)  rotate(0deg) ;
+  	transform:  translate(0px,-24px)  rotate(0deg) ;
   }
   84% {
   	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
   }
   95% {
   	-webkit-transform:  translate(0px,10px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,10px)  rotate(0deg) ;
+  	transform:  translate(0px,10px)  rotate(0deg) ;
   }
   100% {
     -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;s
+  }
+}
+
+@-moz-keyframes drasticFrames {
+  0% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  14% {
+  	-webkit-transform:  translate(0px,-12px)  rotate(-20deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(-20deg) ;
+  	transform:  translate(0px,-12px)  rotate(-20deg) ;
+  }
+  28% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  42% {
+  	-webkit-transform:  translate(0px,-12px)  rotate(20deg) ;
+  	-moz-transform:  translate(0px,-12px)  rotate(20deg) ;
+  	transform:  translate(0px,-12px)  rotate(20deg) ;
+  }
+  56% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  70% {
+  	-webkit-transform:  translate(0px,-24px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,-24px)  rotate(0deg) ;
+  	transform:  translate(0px,-24px)  rotate(0deg) ;
+  }
+  84% {
+  	-webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,0px)  rotate(0deg) ;
+  	transform:  translate(0px,0px)  rotate(0deg) ;
+  }
+  95% {
+  	-webkit-transform:  translate(0px,10px)  rotate(0deg) ;
+  	-moz-transform:  translate(0px,10px)  rotate(0deg) ;
+  	transform:  translate(0px,10px)  rotate(0deg) ;
+  }
+  100% {
+    -webkit-transform:  translate(0px,0px)  rotate(0deg) ;
+    -moz-transform:  translate(0px,0px)  rotate(0deg) ;
+    transform:  translate(0px,0px)  rotate(0deg) ;s
   }
 }
 
@@ -352,8 +597,6 @@ body {
 	background-image: url('./images/snow1.png'), 
 					  url('./images/snow2.png'), 
 					  url('./images/snow3.png');
-	height: 80%;
-	left: 0;
 	position: absolute;
 	top: 0;
 	width: 100%;
@@ -362,6 +605,12 @@ body {
 	-moz-animation: snow 10s linear infinite;
 	-ms-animation: snow 10s linear infinite;
 	animation: snow 10s linear infinite;
+	left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    height: 330px;
+}
 }
 @keyframes snow {
   0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
@@ -383,6 +632,125 @@ body {
   50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
   100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }	
+
+
+
+@media (min-width: 1500px) {
+
+
+
+.swowglobe-bg img.globe {
+	z-index: -1000;
+	width:600px;
+	margin: 0 auto;
+	left:0;
+	right:0;
+}
+
+.globe-area-foreground img.globe-foreground {
+	width: 600px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 10px;
+}
+
+.globe-area-background img.shadow-foreground {
+	width: 850px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 375px;
+    z-index: -10000000;
+}
+
+.light img {
+	width: 600px;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
+    position: absolute;
+    top: 10px;
+}
+
+.character {
+	float: left;
+    margin-left: -60px;
+}
+
+.character-row {
+	margin: 0 auto;
+    left: 152px;
+    right: 0;
+    position: absolute;
+    width: 435px;
+    top: 325px;
+}
+
+.character img {
+	width: 60%;
+}
+
+.character .head {
+	top:0px;
+    position: relative;
+}
+
+.character .head .top {
+	margin-top: -10px;
+}
+
+.character .head .bottom {
+	margin-top: -7px;
+}
+
+.holiday-image {
+	margin: 0 auto;
+    left: 725px;
+    right: 0;
+    position: absolute;
+    width: 375px;
+    top: 375px;
+    z-index: -1;
+}
+
+
+
+}
+
+@media (max-width: 775px) {
+
+.menu-options ul li span {
+	display: none;
+}
+
+.menu-options ul li.play-icon,
+.menu-options ul li.play-icon.active, 
+.menu-options ul li.record-icon,
+.menu-options ul li.record-icon.active,
+.menu-options ul li.info-icon {
+	display: none;
+}
+
+.holiday-image {
+    left: 440px;
+}
+
+
+
+}
+
+@media (max-width: 600px) {
+
+.holiday-image {
+    display: none;
+}
+
+}
+
+
 </style>
 </head>
 
@@ -395,13 +763,17 @@ body {
 		<div class="menu-options">
 			<ul>
 				<li style="display:none;" onclick="playHolidayCard();" class="play-icon">
+					<span style=" width: 60px; margin-left: -83px;">Playback</span>
 				</li>
 				<li onclick="startRecording();" class="record-icon">
+					<span style="margin-left: -130px; width: 120px;">Record a song</span>
 				</li>
 				<li onclick="sendToTwitter();" class="twitter-icon">
+					<span style="margin-left: -138px; width: 120px;" >Share on Twitter</span>
 				</li>
-				<li onclick="scrollToMessage();" class="info-icon">
-				</li>
+				<a href="#open-modal"><li onclick="scrollToMessage();" class="info-icon">
+					<span style="margin-left: -115px; width: 95px;">How it works</span>
+				</li></a>
 			</ul>
 		</div>
 
@@ -410,15 +782,50 @@ body {
 				<img class='globe' src='images/snowglobe-background@2x.png'  />
 			</div>
 
-			<div id="snow"  class="globe-area-foreground">
+			<div class="globe-area-foreground">
 				<img class='globe-foreground' src='images/snowglobe-foreground@2x.png'  />
 			</div>
 
 			<div class="globe-area-background">
 				<img class='shadow-foreground' src='images/background@2x.png'  />
 			</div>
-
-
+			
+			<div id="snow">
+				
+			</div>
+			
+			<div class="lights-row">
+				
+				<div class="light light-1">
+					<img src="images/highlight-01@2x.png" />
+				</div>
+				
+				<div class="light light-2">
+					<img src="images/highlight-02@2x.png" />
+				</div>
+				
+				<div class="light light-3">
+					<img src="images/highlight-03@2x.png" />
+				</div>
+				
+				<div class="light light-4">
+					<img src="images/highlight-04@2x.png" />
+				</div>
+				
+				<div class="light light-5">
+					<img src="images/highlight-05@2x.png" />
+				</div>
+				
+				<div class="light light-6">
+					<img src="images/highlight-06@2x.png" />
+				</div>
+				
+				<div class="light light-7">
+					<img src="images/highlight-07@2x.png" />
+				</div>
+				
+			</div>
+			
 			<div class="character-row">
 
 				<div class="character mike">
@@ -523,7 +930,7 @@ body {
 			</h1>
 			
 			<p>
-				Everyone's favorite part of the holiday season is the music. <a  href="#open-modal">Use your keyboard</a> to play your favorite holiday carols or just make an awesome festive tune for your colleagues, friends, or family. Spread a little bit of holiday cheer by <a href="javascript: void();">sharing this card</a> with the world, or <a href="javascript: void();">record your favorite beat</a> and send it to the ones you love.
+				Everyone's favorite part of the holiday season is the music. <a href="#open-modal">Use your keyboard</a> to play your favorite holiday carols or just make an awesome festive tune for your colleagues, friends, or family. Spread a little bit of holiday cheer by <a href="javascript: void();">sharing this card</a> with the world, or <a href="javascript: void();">record your favorite beat</a> and send it to the ones you love.
 			</p>
 
 			<div class="holiday-image">
